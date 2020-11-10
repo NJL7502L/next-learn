@@ -4,6 +4,10 @@ import utilStyles from '../styles/utils.module.css'
 import { getSortedPostsData } from '../lib/posts'
 
 export async function getStaticProps() {
+  // この関数はサーバーサイドでのみ実行される.(クライアントで実行されることはない.) -> 直接DBにクエリを投げるようなコードも書くことができる.
+  // 開発環境では毎回のリクエストごとに実行されるけど, 本番環境ではビルド時のみの実行となる. -> DBへのクエリもビルド時のみなの？🤔
+  // getStaticPropsはページからのみexportできるらしい。(よくわからん)
+
   const allPostsData = getSortedPostsData()
   return {
     props: {
